@@ -4,7 +4,7 @@ import firebaseClient from './services/firebase';
 
 const TodoRecord = (todo, id) => (
   <tr className="table" key={id}>
-    <td>{todo.item}</td>
+    <td>{todo.todo}</td>
   </tr>
 );
 
@@ -22,8 +22,12 @@ class App extends Component {
     })
   }
 
-  handleSubmit = async todo => {
-    await firebaseClient.addTodo(todo)
+  handleSubmit = todo => {
+    firebaseClient.addTodo(todo)
+
+    this.setState({
+      todo: ''
+    });
   }
 
   componentDidMount() {
