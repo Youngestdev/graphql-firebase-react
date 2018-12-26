@@ -38,16 +38,18 @@ const typeDefs = [`
 //   return todos
 // })
 
-const test = [];
+const test = new Set();
 
 firebaseClient.setTodoListener((querySnapshot) => {
-  const todos = [];
+  const todos = new Set();
   querySnapshot.forEach((todo) => {
     // Work on incorporating the id into data.
     console.log(todo.id, '=>', todo.data());
-    todos.push(todo.data());
+    todos.add(todo.data());
   });
-  todos.map((todo) => test.push(todo));
+  todos.forEach((todo) => test.add(todo))
+  console.log(test);
+  // todos.map((todo) => test.push(todo));
 });
 
 
